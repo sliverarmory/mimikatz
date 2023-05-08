@@ -55,6 +55,9 @@ NTSTATUS mimikatz_dispatchCommand(wchar_t * input);
 
 #if defined(_POWERKATZ)
 __declspec(dllexport) wchar_t * powershell_reflective_mimikatz(LPCWSTR input);
+#elif defined(_SLIVERKATZ)
+typedef int (*goCallback)(const char*, int);
+__declspec(dllexport) int __cdecl entrypoint(char* argsBuffer, SIZE_T bufferSize, goCallback callback);
 #elif defined(_WINDLL)
 void CALLBACK mimikatz_dll(HWND hwnd, HINSTANCE hinst, LPWSTR lpszCmdLine, int nCmdShow);
 #if defined(_M_X64) || defined(_M_ARM64)

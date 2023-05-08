@@ -9,6 +9,14 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz|Win32">
+      <Configuration>sliverkatz</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz|x64">
+      <Configuration>sliverkatz</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{60D02E32-1711-4D9E-9AC2-10627C52EB40}</ProjectGuid>

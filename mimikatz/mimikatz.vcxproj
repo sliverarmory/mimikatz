@@ -33,6 +33,18 @@
       <Configuration>Simple_DLL</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz|ARM64">
+      <Configuration>sliverkatz</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz|Win32">
+      <Configuration>sliverkatz</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz|x64">
+      <Configuration>sliverkatz</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FB9B5E61-7C34-4280-A211-E979E1D6977F}</ProjectGuid>
@@ -43,10 +55,11 @@
     <SccLocalPath>Svn</SccLocalPath>
     <SccProvider>SubversionScc</SccProvider>
     <WindowsTargetPlatformVersion Condition="'$(Platform)' == 'ARM64'">10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <ConfigurationType Condition="('$(Configuration)' == 'Second_Release_PowerShell') Or ('$(Configuration)' == 'Simple_DLL')">DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -55,7 +68,7 @@
     <PlatformToolset Condition="'$(VCTargetsPath11)' != ''">v110_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VCTargetsPath12)' != ''">v120_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VCTargetsPath14)' != ''">v140_xp</PlatformToolset>
-    <PlatformToolset Condition="'$(VCTargetsPath15)' != ''">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VCTargetsPath15)' != ''">v142</PlatformToolset>
     <UseOfMfc>static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="Exists('$(VCTargetsPath)\Platforms\$(Platform)\PlatformToolsets\ddk2003') Or Exists('$(VCTargetsPath)\..\Platforms\$(Platform)\PlatformToolsets\ddk2003')">
@@ -74,6 +87,10 @@
     <IncludePath>$(SolutionDir)inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)lib\$(Platform);$(LibraryPath)</LibraryPath>
     <TargetName Condition="'$(Configuration)' == 'Second_Release_PowerShell'">powerkatz</TargetName>
+    <TargetName Condition="'$(Configuration)'=='sliverkatz'">powerkatz</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>false</VcpkgEnabled>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -84,6 +101,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)' == 'Second_Release_PowerShell'">_POWERKATZ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)'=='sliverkatz'">_SLIVERKATZ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
@@ -94,7 +112,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <ErrorReporting>None</ErrorReporting>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -13,6 +13,18 @@
       <Configuration>Release</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz|ARM64">
+      <Configuration>sliverkatz</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz|Win32">
+      <Configuration>sliverkatz</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz|x64">
+      <Configuration>sliverkatz</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0BD5DE6B-8DA5-4CF1-AE53-A265010F52AA}</ProjectGuid>
