@@ -1,0 +1,17 @@
+{
+  "name": "Mimikatz",
+  "command_name": "mimikatz",
+  "version": "v0.0.1",
+  "extension_author": "MrAle98",
+  "original_author": "Gentilkiwi",
+  "repo_url": "https://github.com/sliverarmory/COFFLoader",
+  "help": "Load and execute Beacon Object Files (BOFs) in memory.",
+  "entrypoint": "entrypoint",
+  "files": [
+    {
+      "os": "windows",
+      "arch": "amd64",
+      "path": "mimikatz.dll"
+    }
+  ]
+}

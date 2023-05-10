@@ -277,7 +277,7 @@ __declspec(dllexport) int __cdecl entrypoint(char* argsBuffer, SIZE_T bufferSize
 	output = malloc(sizeof(char) * (outputBufferElements + 2));
 	memset(output, 0x0, sizeof(char) * (outputBufferElements + 2));
 	wcstombs(output, outputBuffer, sizeof(char) * (outputBufferElements + 2));
-	callback(output, sizeof(output));
+	callback(output, strlen(output));
 	free(output);
 	free(input);
 	return 1;
