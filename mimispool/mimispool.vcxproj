@@ -13,6 +13,18 @@
       <Configuration>Release</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz-debug|ARM64">
+      <Configuration>sliverkatz-debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz-debug|Win32">
+      <Configuration>sliverkatz-debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz-debug|x64">
+      <Configuration>sliverkatz-debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="sliverkatz|ARM64">
       <Configuration>sliverkatz</Configuration>
       <Platform>ARM64</Platform>

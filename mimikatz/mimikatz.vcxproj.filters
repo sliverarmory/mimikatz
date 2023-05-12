@@ -745,10 +745,4 @@
       <UniqueIdentifier>{ca3b8b78-3db9-40c8-8091-438a90e5be4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="mimikatz.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="mimikatz.ico" />
-  </ItemGroup>
 </Project>

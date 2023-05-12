@@ -99,7 +99,7 @@ int previousStdOut, previousStdErr;
 UINT previousConsoleOutput;
 void kull_m_output_init()
 {
-#if !defined(_POWERKATZ)
+#if !defined(_POWERKATZ) || !defined(_SLIVERKATZ)
 #if !defined(_WINDLL)
 	previousStdOut = _setmode(_fileno(stdout), _O_U8TEXT);
 	previousStdErr = _setmode(_fileno(stderr), _O_U8TEXT);

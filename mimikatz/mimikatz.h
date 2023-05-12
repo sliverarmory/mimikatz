@@ -55,7 +55,9 @@ NTSTATUS mimikatz_dispatchCommand(wchar_t * input);
 
 #if defined(_POWERKATZ)
 __declspec(dllexport) wchar_t * powershell_reflective_mimikatz(LPCWSTR input);
-#elif defined(_SLIVERKATZ)
+#elif defined(_SLIVERKATZ) && (_DEBUG)
+__declspec(dllexport) int __cdecl testentrypoint();
+#elif defined(_SLIVERKATZ) && !(_DEBUG)
 typedef int (*goCallback)(const char*, int);
 __declspec(dllexport) int __cdecl entrypoint(char* argsBuffer, SIZE_T bufferSize, goCallback callback);
 #elif defined(_WINDLL)

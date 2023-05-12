@@ -33,6 +33,18 @@
       <Configuration>Simple_DLL</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz-debug|ARM64">
+      <Configuration>sliverkatz-debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz-debug|Win32">
+      <Configuration>sliverkatz-debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="sliverkatz-debug|x64">
+      <Configuration>sliverkatz-debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="sliverkatz|ARM64">
       <Configuration>sliverkatz</Configuration>
       <Platform>ARM64</Platform>
@@ -88,6 +100,7 @@
     <LibraryPath>$(SolutionDir)lib\$(Platform);$(LibraryPath)</LibraryPath>
     <TargetName Condition="'$(Configuration)' == 'Second_Release_PowerShell'">powerkatz</TargetName>
     <TargetName Condition="'$(Configuration)'=='sliverkatz'">powerkatz</TargetName>
+    <TargetName Condition="'$(Configuration)'=='sliverkatz-debug'">powerkatz</TargetName>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnabled>false</VcpkgEnabled>
@@ -102,6 +115,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)' == 'Second_Release_PowerShell'">_POWERKATZ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)'=='sliverkatz'">_SLIVERKATZ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)'=='sliverkatz-debug'">_SLIVERKATZ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
@@ -113,6 +127,8 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <ErrorReporting>None</ErrorReporting>
       <TreatWarningAsError>false</TreatWarningAsError>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='sliverkatz|x64'">MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='sliverkatz-debug|x64'">MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +143,10 @@
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <DelayLoadDLLs>bcrypt.dll;ncrypt.dll</DelayLoadDLLs>
+      <GenerateMapFile Condition="'$(Configuration)|$(Platform)'=='sliverkatz|x64'">false</GenerateMapFile>
+      <GenerateMapFile Condition="'$(Configuration)|$(Platform)'=='sliverkatz-debug|x64'">true</GenerateMapFile>
+      <MapExports Condition="'$(Configuration)|$(Platform)'=='sliverkatz|x64'">false</MapExports>
+      <MapExports Condition="'$(Configuration)|$(Platform)'=='sliverkatz-debug|x64'">true</MapExports>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

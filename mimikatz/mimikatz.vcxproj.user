@@ -1,4 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='sliverkatz|x64'">
+    <LocalDebuggerCommand>
+    </LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>
+    </LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='sliverkatz-debug|x64'">
+    <LocalDebuggerCommand>C:\Windows\System32\rundll32.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>C:\Users\Administrator\source\repos\mimikatz\x64\powerkatz.dll,testentrypoint</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>

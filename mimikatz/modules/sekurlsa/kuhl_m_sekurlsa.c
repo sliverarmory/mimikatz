@@ -145,6 +145,10 @@ NTSTATUS kuhl_m_sekurlsa_clean()
 		lsassLocalHelper = NULL;
 	}
 	kuhl_m_sekurlsa_sk_candidatekeys_delete();
+	cLsass.hLsassMem = NULL;
+	cLsass.osContext.BuildNumber = 0;
+	cLsass.osContext.MajorVersion = 0;
+	cLsass.osContext.MinorVersion = 0;
 	return status;
 }
 
