@@ -34,7 +34,7 @@ jobs:
     - name: MSBuild x64
       run: |
         msbuild.exe .\mimikatz.sln /p:Configuration=Release /p:Platform="x64"
-        continue-on-error: true
+      continue-on-error: true
 
     - name: Check for mimikatz x64 artifact
       run: |
@@ -49,7 +49,7 @@ jobs:
     - name: MSBuild Win32
       run: |
         msbuild.exe .\mimikatz.sln /p:Configuration=Release /p:Platform="Win32"
-        continue-on-error: true
+      continue-on-error: true
 
     - name: Check for mimikatz x32 artifact
       run: |
