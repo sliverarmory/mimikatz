@@ -17,6 +17,18 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
   
+    - name: Install Visual Studio components
+      run: |
+        $vsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+        if (!(Test-Path $vsPath)) {
+          $vsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional"
+        }
+        if (!(Test-Path $vsPath)) {
+          $vsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
+        }
+        & "$vsPath\Installer\vs_installer.exe" modify --installPath $vsPath --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.VC.ATL --add Microsoft.VisualStudio.Component.VC.MFC --add Microsoft.VisualStudio.Component.Windows10SDK.17763 --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.VC.v141.xp --quiet --wait
+      shell: pwsh
+
     - name: Check out code
       uses: actions/checkout@v3
 
