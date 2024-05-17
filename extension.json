@@ -1,17 +1,22 @@
 {
-  "name": "Mimikatz",
+  "name": "mimikatz",
   "command_name": "mimikatz",
-  "version": "v0.0.1",
+  "version": "v0.0.0",
   "extension_author": "MrAle98",
   "original_author": "Gentilkiwi",
-  "repo_url": "https://github.com/sliverarmory/COFFLoader",
-  "help": "Load and execute Beacon Object Files (BOFs) in memory.",
+  "repo_url": "https://github.com/sliverarmory/mimikatz",
+  "help": "A little tool to play with Windows security",
   "entrypoint": "entrypoint",
   "files": [
     {
       "os": "windows",
       "arch": "amd64",
-      "path": "mimikatz.dll"
+      "path": "powerkatz.x64.dll"
+    },
+    {
+      "os": "windows",
+      "arch": "386",
+      "path": "powerkatz.x86.dll"
     }
   ]
 }

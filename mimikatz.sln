@@ -123,7 +123,9 @@ Global
 		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.Simple_DLL|x64.Build.0 = Simple_DLL|x64
 		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.sliverkatz|ARM64.ActiveCfg = sliverkatz|ARM64
 		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.sliverkatz|Win32.ActiveCfg = sliverkatz|Win32
+		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.sliverkatz|Win32.Build.0 = sliverkatz|Win32
 		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.sliverkatz|x64.ActiveCfg = sliverkatz|x64
+		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.sliverkatz|x64.Build.0 = sliverkatz|x64
 		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.sliverkatz-debug|ARM64.ActiveCfg = sliverkatz-debug|ARM64
 		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.sliverkatz-debug|Win32.ActiveCfg = sliverkatz-debug|Win32
 		{FB9B5E61-7C34-4280-A211-E979E1D6977F}.sliverkatz-debug|x64.ActiveCfg = sliverkatz-debug|x64

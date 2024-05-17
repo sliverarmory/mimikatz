@@ -33,33 +33,11 @@ jobs:
 
     - name: MSBuild x64
       run: |
-        msbuild.exe .\mimikatz.sln /p:Configuration=Release /p:Platform="x64"
-      continue-on-error: true
-
-    - name: Check for mimikatz x64 artifact
-      run: |
-        if (Test-Path ".\x64\mimikatz.dll") {
-          Write-Output "mimikatz x64 build succeeded."
-        } else {
-          Write-Output "mimikatz x64 build failed."
-          exit 1
-        }
-      shell: pwsh
+        msbuild.exe .\mimikatz.sln /t:mimikatz /p:Configuration=sliverkatz /p:Platform="x64"
 
     - name: MSBuild Win32
       run: |
-        msbuild.exe .\mimikatz.sln /p:Configuration=Release /p:Platform="Win32"
-      continue-on-error: true
-
-    - name: Check for mimikatz x32 artifact
-      run: |
-        if (Test-Path ".\Win32\mimikatz.dll") {
-          Write-Output "mimikatz x86 build succeeded."
-        } else {
-          Write-Output "mimikatz x86 build failed."
-          exit 1
-        }
-      shell: pwsh
+        msbuild.exe .\mimikatz.sln /t:mimikatz /p:Configuration=sliverkatz /p:Platform="Win32"
 
     - name: Build Package
       # Powershell is utter fucking trash.
