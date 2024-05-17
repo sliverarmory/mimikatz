@@ -47,8 +47,8 @@ jobs:
         mkdir compiled
         $Version = git.exe describe --tags --abbrev=0
         Get-Content -Path extension.json | .\jq.exe --arg ver "$Version" '.version |= $ver' > ./compiled/extension.json
-        Copy-Item -Path .\x64\mimikatz.dll -Destination compiled\mimikatz.x64.dll
-        Copy-Item -Path .\Win32\mimikatz.dll -Destination compiled\mimikatz.x86.dll
+        Copy-Item -Path .\x64\powerkatz.dll -Destination compiled\powerkatz.x64.dll
+        Copy-Item -Path .\Win32\powerkatz.dll -Destination compiled\powerkatz.x86.dll
         cd compiled
         tar.exe -czvf ..\mimikatz.tar.gz .
         cd ..
