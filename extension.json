@@ -6,6 +6,7 @@
   "original_author": "Gentilkiwi",
   "repo_url": "https://github.com/sliverarmory/mimikatz",
   "help": "A little tool to play with Windows security",
+  "long_help": "Example usage:\n\n  mimikatz \"privilege::debug\" \"sekurlsa::logonpasswords\"\n\n  mimikatz \"\\\"lsadump::dcsync /user:domain\\krbtgt /domain:lab.local\\\"\"",
   "entrypoint": "entrypoint",
   "files": [
     {
